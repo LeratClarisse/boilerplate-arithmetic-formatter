@@ -23,8 +23,10 @@ def arithmetic_arranger(problems):
       
     #update each line
     first_line += construct_first_line(n1, len(n2))
+    first_line += "    "
 
-    second_line += construct_second_line(n1, n2, sign)
+    second_line += construct_second_line(len(n1), n2, sign)
+    second_line += "    "
   
     longest_number = n2 if n1 < n2 else n1
     dash_line += construct_dash_line(len(longest_number))
@@ -34,7 +36,7 @@ def arithmetic_arranger(problems):
   
   #return formatted result
   #arranged_problems = first_line + "\n" + second_line + "\n" + dash_line + result_line
-  arranged_problems = first_line
+  arranged_problems = first_line + "\n" + second_line
   
   return arranged_problems
 
@@ -60,16 +62,25 @@ def construct_first_line(first_number, second_number_len):
       result += " "
       i += 1
   else:
-    i = 0
-    while i < (first_number_len + 2):
-      result += " "
-      i += 1
+    result += "  "
 
   result += first_number
   return result
 
-def construct_second_line(first_number, second_number, sign):  
-  return ""
+def construct_second_line(first_number_len, second_number, sign):
+  result = sign
+  second_number_len = len(second_number)
+  
+  if second_number_len >= first_number_len:
+    result += " "
+  else:
+    i = 0
+    while i < ((first_number_len - second_number_len) + 1):
+      result += " "
+      i += 1
+
+  result += second_number
+  return result
 
 def construct_dash_line(longest_number_length):  
   return ""
